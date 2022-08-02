@@ -6,20 +6,21 @@ import { map } from "rxjs/operators";
 })
 export class SpotifyService {
 
-  constructor(private http: HttpClient) { 
+
+  constructor(private http: HttpClient) {
     console.log('spotify service listo');
   }
   getQuery( query: string){
     const url = `https://api.spotify.com/v1/${ query }`;
 
     const headers = new HttpHeaders({
-      'Authorization':'Bearer BQCkUIqC61wmAHqL1yA6df1hct6HNQZuIThzZnTyVousPBOq6x4KYE-PqrZTw1Yx_eWSFOE5uqDvQ8i_Hts'});
+      'Authorization':`Bearer BQB1BXt7zlLgsszKjvnDiLixGny8Vshjl0awvNczISoigr7zdd22JXegAtA24cb4KFKJRh5GiDpAHgv7vT7zus8UkVwlVQP7u32FcUJ0XF24bYf7gow`});
 
       return this.http.get(url,{headers});
 
   }
   getNewReleases(){
- 
+
     return this.getQuery('browse/new-releases?limit=20')
      .pipe( map( data => data['albums'].items ));
   }
